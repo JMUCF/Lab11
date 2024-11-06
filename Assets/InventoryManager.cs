@@ -7,6 +7,8 @@ public class InventoryManager : MonoBehaviour
 
     public InventoryItem[] InventoryItems;
     private int inventoryLength = 10;
+    public int IDToFind;
+    public bool BinarySearch;
 
     public void Start()
     {
@@ -21,6 +23,12 @@ public class InventoryManager : MonoBehaviour
             Debug.Log(InventoryItems[i].Value);
             Debug.Log(InventoryItems[i].ID);
         }
+        if (BinarySearch)
+        {
+            int IDFound = BinarySearchByID(InventoryItems, IDToFind);
+            if (IDFound == -1) { Debug.LogWarning("ID Not Within Array"); }
+            else { Debug.LogWarning("ID Found at" + IDFound + "In array"); }
+        }
     }
 
     public InventoryItem LinearSearchByName(string itemName)
@@ -29,10 +37,21 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
-    public InventoryItem BinarySearchByID(int ID)
+    public int BinarySearchByID(InventoryItem[] arr, int ID)
     {
+        int left = 0;
+        int right = arr.Length - 1;
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
 
-    return null;
+            if (arr[mid].ID == ID) return mid;
+
+            else if (arr[mid].ID < ID) left = mid + 1;
+
+            else right = mid - 1;
+        }
+        return -1;
     }
 
     public InventoryItem QuickSortByValue(int Value)
