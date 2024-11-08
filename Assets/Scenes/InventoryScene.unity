@@ -338,6 +338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IDToFind: 5
+  BinarySearch: 0
+  QuickSort: 1
 --- !u!4 &2032733882
 Transform:
   m_ObjectHideFlags: 0

@@ -34,7 +34,19 @@ public class InventoryManager : MonoBehaviour
 
         if (QuickSort)
         {
+            Debug.Log("Unsorted List");
+            for (int i = 0; i < InventoryItems.Length; i++)
+            {
+                Debug.Log(InventoryItems[i].Name + " - Value: " + InventoryItems[i].Value);
+            }
+
             QuickSortByValue(InventoryItems, 0, InventoryItems.Length - 1);
+
+            Debug.Log("Sorted List");
+            for (int i = 0; i < InventoryItems.Length; i++)
+            {
+                Debug.Log(InventoryItems[i].Name + " - Value: " + InventoryItems[i].Value);
+            }
         }
     }
 
@@ -78,29 +90,26 @@ public class InventoryManager : MonoBehaviour
 
     public int Partition(InventoryItem[] arr, int first, int last)
     {
-        int pivot = InventoryItems[last].Value;
-        int smaller = InventoryItems[first].Value;
+        int pivot = arr[last].Value;
+        int smaller = first - 1;
 
         for (int element = first; element < last; element++)
         {
-            Debug.Log("Element is: " + element);
-            Debug.Log("Last is: " + last);
-
             if (arr[element].Value < pivot)
             {
-                element++;
-
-                int temporary = arr[smaller].Value;
-                arr[smaller].Value = arr[element].Value;
-                arr[element].Value = temporary;
+                smaller++;
+                // Swap arr[smaller] and arr[element]
+                InventoryItem temp = arr[smaller];
+                arr[smaller] = arr[element];
+                arr[element] = temp;
             }
         }
 
-        int temporaryNext = arr[smaller + 1].Value;
-        arr[smaller + 1].Value = arr[last].Value;
-        arr[last].Value = temporaryNext;
+        // Place pivot in the correct position
+        InventoryItem tempNext = arr[smaller + 1];
+        arr[smaller + 1] = arr[last];
+        arr[last] = tempNext;
 
-        Debug.Log(smaller + 1);
         return smaller + 1;
     }
 }
