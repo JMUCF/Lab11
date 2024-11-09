@@ -9,8 +9,14 @@ public class InventoryManager : MonoBehaviour
 
     public InventoryItem[] InventoryItems;
     private int inventoryLength = 10;
+    [Header("Format names as 'Cool Item #' for linear search")]
+    public string NameToFind;
+    [Header("ID to look for in binary search")]
     public int IDToFind;
-    public bool BinarySearch, QuickSort;
+    [Header("Check which action you want to perform")]
+    public bool LinearSearch;
+    public bool BinarySearch;
+    public bool QuickSort;
 
     public void Start()
     {
@@ -21,10 +27,13 @@ public class InventoryManager : MonoBehaviour
             InventoryItems[i].ID = UnityEngine.Random.Range(0, 100);
             InventoryItems[i].Name = "Cool Item " + InventoryItems[i].ID;
             InventoryItems[i].Value = UnityEngine.Random.Range(0, 100);
-            //Debug.Log(InventoryItems[i].Name);
-            //Debug.Log(InventoryItems[i].Value);
-            //Debug.Log(InventoryItems[i].ID);
         }
+
+        if (LinearSearch)
+        {
+            Debug.Log(LinearSearchByName(NameToFind));
+        }
+
         if (BinarySearch)
         {
             int IDFound = BinarySearchByID(InventoryItems, IDToFind);
@@ -34,7 +43,7 @@ public class InventoryManager : MonoBehaviour
 
         if (QuickSort)
         {
-            Debug.Log("Unsorted List");
+            Debug.Log("==========   Unsorted List   ==========");
             for (int i = 0; i < InventoryItems.Length; i++)
             {
                 Debug.Log(InventoryItems[i].Name + " - Value: " + InventoryItems[i].Value);
@@ -42,7 +51,7 @@ public class InventoryManager : MonoBehaviour
 
             QuickSortByValue(InventoryItems, 0, InventoryItems.Length - 1);
 
-            Debug.Log("Sorted List");
+            Debug.Log("==========   Sorted List   ==========");
             for (int i = 0; i < InventoryItems.Length; i++)
             {
                 Debug.Log(InventoryItems[i].Name + " - Value: " + InventoryItems[i].Value);
