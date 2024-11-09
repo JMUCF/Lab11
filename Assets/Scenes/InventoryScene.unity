@@ -337,11 +337,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24d6bc82c2d04742a3bacd93122ca32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLength: 10
   NameToFind: Cool Item 7
   IDToFind: 5
   LinearSearch: 0
-  BinarySearch: 0
-  QuickSort: 1
+  BinarySearch: 1
+  QuickSort: 0
 --- !u!4 &2032733882
 Transform:
   m_ObjectHideFlags: 0

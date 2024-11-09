@@ -8,7 +8,7 @@ public class InventoryManager : MonoBehaviour
 {
 
     public InventoryItem[] InventoryItems;
-    private int inventoryLength = 10;
+    public int inventoryLength = 10;
     [Header("Format names as 'Cool Item #' for linear search")]
     public string NameToFind;
     [Header("ID to look for in binary search")]
@@ -24,7 +24,7 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < inventoryLength; i++)
         {
             InventoryItems[i] = new InventoryItem();
-            InventoryItems[i].ID = UnityEngine.Random.Range(0, 100);
+            InventoryItems[i].ID = UnityEngine.Random.Range(0, inventoryLength);
             InventoryItems[i].Name = "Cool Item " + InventoryItems[i].ID;
             InventoryItems[i].Value = UnityEngine.Random.Range(0, 100);
         }
@@ -38,7 +38,7 @@ public class InventoryManager : MonoBehaviour
         {
             int IDFound = BinarySearchByID(InventoryItems, IDToFind);
             if (IDFound == -1) { Debug.LogWarning("ID Not Within Array"); }
-            else { Debug.LogWarning("ID Found at" + IDFound + "In array"); }
+            else { Debug.Log("ID Found at " + IDFound + " in array"); }
         }
 
         if (QuickSort)
