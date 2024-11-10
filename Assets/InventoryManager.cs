@@ -107,14 +107,12 @@ public class InventoryManager : MonoBehaviour
             if (arr[element].Value < pivot)
             {
                 smaller++;
-                // Swap arr[smaller] and arr[element]
                 InventoryItem temp = arr[smaller];
                 arr[smaller] = arr[element];
                 arr[element] = temp;
             }
         }
 
-        // Place pivot in the correct position
         InventoryItem tempNext = arr[smaller + 1];
         arr[smaller + 1] = arr[last];
         arr[last] = tempNext;
